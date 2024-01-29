@@ -15,7 +15,7 @@ class _AddTasksState extends State<AddTasks> {
   TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-
+  List selectedTab = ["Design"];
   DateTime selectedDate = DateTime.now();
   final DateFormat _dateFormat = DateFormat('MMMM d, yyyy');
 
@@ -271,13 +271,16 @@ class _AddTasksState extends State<AddTasks> {
                                     color: Color.fromRGBO(191, 200, 232, 1),
                                     fontSize: 15),
                               ),
-                              Text(
-                                _timeFormat.format(DateTime(2022, 1, 1,
-                                    selectedTime.hour, selectedTime.minute)),
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(46, 58, 89, 1),
+                              InkWell(
+                                onTap: () => _selectTime(context),
+                                child: Text(
+                                  _timeFormat.format(DateTime(2022, 1, 1,
+                                      selectedTime.hour, selectedTime.minute)),
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromRGBO(46, 58, 89, 1),
+                                  ),
                                 ),
                               ),
                             ],
@@ -291,13 +294,16 @@ class _AddTasksState extends State<AddTasks> {
                                     color: Color.fromRGBO(191, 200, 232, 1),
                                     fontSize: 15),
                               ),
-                              Text(
-                                _timeFormat.format(DateTime(2022, 1, 1,
-                                    selectedTime.hour, selectedTime.minute)),
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(46, 58, 89, 1),
+                              InkWell(
+                                onTap: () => _selectTime(context),
+                                child: Text(
+                                  _timeFormat.format(DateTime(2022, 1, 1,
+                                      selectedTime.hour, selectedTime.minute)),
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromRGBO(46, 58, 89, 1),
+                                  ),
                                 ),
                               ),
                             ],
@@ -361,93 +367,98 @@ class _AddTasksState extends State<AddTasks> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Container(
-                                        padding:EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                                        margin: EdgeInsets.all(5),
-                                        decoration:BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Color.fromRGBO(156, 44, 243,1),
-                                              Color.fromRGBO(58, 73,249,1)
-                                            ],
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            if (!selectedTab
+                                                .contains("Design")) {
+                                              selectedTab.add("Design");
+                                            } else {
+                                              selectedTab.remove("Design");
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 15),
+                                          margin: EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: selectedTab
+                                                          .contains("Design")
+                                                      ? [
+                                                          Color.fromRGBO(
+                                                              156, 44, 243, 1),
+                                                          Color.fromRGBO(
+                                                              58, 73, 249, 1)
+                                                        ]
+                                                      : [
+                                                          Color.fromRGBO(
+                                                              229, 234, 253, 1),
+                                                          Color.fromRGBO(
+                                                              229, 234, 253, 1)
+                                                        ],
+                                                  stops: [
+                                                    .01,
+                                                    .8,
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(40))),
+                                          child: Text(
+                                            "Design",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: selectedTab.contains("Design")?Colors.white:Color.fromRGBO(46, 58, 89,1)),
                                           ),
-                                          borderRadius: BorderRadius.all(Radius.circular(40))
-                                        ),
-                                        child: Text(
-                                          "Design",
-                                          style: TextStyle(fontSize: 15,color: Colors.white),
                                         ),
                                       ),
-                                      Container(
-                                        padding:EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                                        margin: EdgeInsets.all(5),
-
-                                        decoration:BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  Color.fromRGBO(156, 44, 243,1),
-                                                  Color.fromRGBO(58, 73,249,1)
-                                                ],
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter
-                                            ),
-                                            borderRadius: BorderRadius.all(Radius.circular(40))
-                                        ),
-                                        child: Text(
-                                          "Design",
-                                          style: TextStyle(fontSize: 15,color: Colors.white),
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        padding:EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                                        margin: EdgeInsets.all(5),
-
-                                        decoration:BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  Color.fromRGBO(156, 44, 243,1),
-                                                  Color.fromRGBO(58, 73,249,1)
-                                                ],
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter
-                                            ),
-                                            borderRadius: BorderRadius.all(Radius.circular(40))
-                                        ),
-                                        child: Text(
-                                          "Design",
-                                          style: TextStyle(fontSize: 15,color: Colors.white),
-                                        ),
-                                      ),
-
-                                      Container(
-                                        padding:EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                                        margin: EdgeInsets.all(5),
-
-                                        decoration:BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  Color.fromRGBO(156, 44, 243,1),
-                                                  Color.fromRGBO(58, 73,249,1)
-                                                ],
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter
-                                            ),
-                                            borderRadius: BorderRadius.all(Radius.circular(40))
-                                        ),
-                                        child: Text(
-                                          "Design",
-                                          style: TextStyle(fontSize: 15,color: Colors.white),
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            if (!selectedTab
+                                                .contains("Meeting")) {
+                                              selectedTab.add("Meeting");
+                                            } else {
+                                              selectedTab.remove("Meeting");
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 10),
+                                          margin: EdgeInsets.symmetric(horizontal: 1,vertical: 5),
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: selectedTab
+                                                      .contains("Meeting")
+                                                      ? [
+                                                    Color.fromRGBO(
+                                                        156, 44, 243, 1),
+                                                    Color.fromRGBO(
+                                                        58, 73, 249, 1)
+                                                  ]
+                                                      : [
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1),
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1)
+                                                  ],
+                                                  stops: [
+                                                    .01,
+                                                    .8,
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(40))),
+                                          child: Text(
+                                            "Meeting",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: selectedTab.contains("Meeting")?Colors.white:Color.fromRGBO(46, 58, 89,1)),
+                                          ),
                                         ),
                                       ),
 
@@ -459,48 +470,204 @@ class _AddTasksState extends State<AddTasks> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Container(
-                                        padding:EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                                        margin: EdgeInsets.all(5),
-
-                                        decoration:BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  Color.fromRGBO(156, 44, 243,1),
-                                                  Color.fromRGBO(58, 73,249,1)
-                                                ],
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter
-                                            ),
-                                            borderRadius: BorderRadius.all(Radius.circular(40))
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            if (!selectedTab
+                                                .contains("BDE")) {
+                                              selectedTab.add("BDE");
+                                            } else {
+                                              selectedTab.remove("BDE");
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 25),
+                                          margin: EdgeInsets.symmetric(horizontal: 1,vertical: 5),
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: selectedTab
+                                                      .contains("BDE")
+                                                      ? [
+                                                    Color.fromRGBO(
+                                                        156, 44, 243, 1),
+                                                    Color.fromRGBO(
+                                                        58, 73, 249, 1)
+                                                  ]
+                                                      : [
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1),
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1)
+                                                  ],
+                                                  stops: [
+                                                    .01,
+                                                    .8,
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(40))),
+                                          child: Text(
+                                            "BDE",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: selectedTab.contains("BDE")?Colors.white:Color.fromRGBO(46, 58, 89,1)),
+                                          ),
                                         ),
-                                        child: Text(
-                                          "Design",
-                                          style: TextStyle(fontSize: 15,color: Colors.white),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            if (!selectedTab
+                                                .contains("Testing")) {
+                                              selectedTab.add("Testing");
+                                            } else {
+                                              selectedTab.remove("Testing");
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 10),
+                                          margin: EdgeInsets.symmetric(horizontal: 1,vertical: 5),
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: selectedTab
+                                                      .contains("Testing")
+                                                      ? [
+                                                    Color.fromRGBO(
+                                                        156, 44, 243, 1),
+                                                    Color.fromRGBO(
+                                                        58, 73, 249, 1)
+                                                  ]
+                                                      : [
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1),
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1)
+                                                  ],
+                                                  stops: [
+                                                    .01,
+                                                    .8,
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(40))),
+                                          child: Text(
+                                            "Testing",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: selectedTab.contains("Testing")?Colors.white:Color.fromRGBO(46, 58, 89,1)),
+                                          ),
                                         ),
                                       ),
 
-                                      Container(
-                                        padding:EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                                        margin: EdgeInsets.all(5),
-
-                                        decoration:BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  Color.fromRGBO(156, 44, 243,1),
-                                                  Color.fromRGBO(58, 73,249,1)
-                                                ],
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter
-                                            ),
-                                            borderRadius: BorderRadius.all(Radius.circular(40))
-                                        ),
-                                        child: Text(
-                                          "Design",
-                                          style: TextStyle(fontSize: 15,color: Colors.white),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            if (!selectedTab
+                                                .contains("Coding")) {
+                                              selectedTab.add("Coding");
+                                            } else {
+                                              selectedTab.remove("Coding");
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 10),
+                                          margin: EdgeInsets.symmetric(horizontal: 1,vertical: 5),
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: selectedTab
+                                                      .contains("Coding")
+                                                      ? [
+                                                    Color.fromRGBO(
+                                                        156, 44, 243, 1),
+                                                    Color.fromRGBO(
+                                                        58, 73, 249, 1)
+                                                  ]
+                                                      : [
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1),
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1)
+                                                  ],
+                                                  stops: [
+                                                    .01,
+                                                    .8,
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(40))),
+                                          child: Text(
+                                            "Coding",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: selectedTab.contains("Coding")?Colors.white:Color.fromRGBO(46, 58, 89,1)),
+                                          ),
                                         ),
                                       ),
-                                      
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            if (!selectedTab
+                                                .contains("Quick Call")) {
+                                              selectedTab.add("Quick Call");
+                                            } else {
+                                              selectedTab.remove("Quick Call");
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 16),
+                                          margin: EdgeInsets.symmetric(horizontal: 1,vertical: 5),
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: selectedTab
+                                                      .contains("Quick Call")
+                                                      ? [
+                                                    Color.fromRGBO(
+                                                        156, 44, 243, 1),
+                                                    Color.fromRGBO(
+                                                        58, 73, 249, 1)
+                                                  ]
+                                                      : [
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1),
+                                                    Color.fromRGBO(
+                                                        229, 234, 253, 1)
+                                                  ],
+                                                  stops: [
+                                                    .01,
+                                                    .8,
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(40))),
+                                          child: Text(
+                                            "Quick",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: selectedTab.contains("Quick Call")?Colors.white:Color.fromRGBO(46, 58, 89,1)),
+                                          ),
+                                        ),
+                                      ),
+
                                     ],
                                   ),
                                 ),
@@ -511,34 +678,39 @@ class _AddTasksState extends State<AddTasks> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 20),
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 60,vertical: 10),
-                        margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 80, vertical: 10),
+                        margin:
+                            EdgeInsets.only(bottom: 10, left: 10, right: 10),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [
-                                Color.fromRGBO(156, 44, 243, 1),
-                                Color.fromRGBO(58, 73, 249, 1),
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter),
-                          borderRadius: BorderRadius.all(Radius.circular(50))
-                        ),
-                        child: const Text('Search Flights',
+                            gradient: LinearGradient(
+                                colors: [
+                                  Color.fromRGBO(156, 44, 243, 1),
+                                  Color.fromRGBO(58, 73, 249, 1),
+                                ],
+                                stops: [
+                                  .01,
+                                  .8,
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50))),
+                        child: const Text(
+                          'Create Task',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 20
-                          ),),
+                              fontSize: 20),
+                        ),
                       ),
                     ),
-
                   ],
                 ),
               ),
             ),
-
           ],
         ),
       ),

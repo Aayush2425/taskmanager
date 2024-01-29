@@ -85,6 +85,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   controller: _tabController,
                   tabs: [
                     Tab(
+
                       child: Container(
                         decoration: BoxDecoration(
                           color: _tabController.index == 0
@@ -101,6 +102,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       ),
                     ),
                     Tab(
+
                       child: Container(
                         decoration: BoxDecoration(
                           color: _tabController.index == 1
@@ -140,11 +142,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   unselectedLabelColor: const Color.fromRGBO(36, 39, 54, 1),
                   indicatorSize: TabBarIndicatorSize.label,
-                  onTap: (index) {
-                    // Handle tab changes if needed
-                  },
+
                   dividerHeight: 0,
-                  indicatorColor: Colors.white,
                 ),
                 Expanded(
                   child: TabBarView(
@@ -173,10 +172,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20)),
+                                child: Card(
+                                  borderOnForeground: false,
+                                  shadowColor: Colors.transparent,
+
+                                  surfaceTintColor: Colors.white,
                                   child: Row(
                                     children: [
                                       Padding(
@@ -207,9 +207,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ),
                                       Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        MainAxisAlignment.center,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Container(
                                             alignment: Alignment.centerLeft,
@@ -250,6 +250,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ),
                                     ],
                                   ),
+
                                 ),
                               ),
                             )
